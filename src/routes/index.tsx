@@ -100,6 +100,7 @@ function DeliverySettings() {
     },
   ]);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({ perola: true });
+  const [pickupTime, setPickupTime] = useState({ min: 15, max: 20 });
   const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState("");
 
