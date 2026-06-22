@@ -198,6 +198,24 @@ function DeliverySettings() {
           </div>
         </div>
 
+        {/* Tempo de retirada geral */}
+        <div className="mb-6 flex items-center gap-4 rounded-2xl border border-border bg-card p-5">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
+            <ShoppingBag className="h-5 w-5" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-display text-lg font-bold">Tempo de retirada</h3>
+            <p className="text-sm text-muted-foreground">Definido uma vez — vale para todos os bairros e cidades.</p>
+          </div>
+          <RangeInput
+            icon={<Clock className="h-3.5 w-3.5" />}
+            tone="muted"
+            min={pickupTime.min}
+            max={pickupTime.max}
+            onChange={(min, max) => setPickupTime({ min, max })}
+          />
+        </div>
+
         {/* City sections */}
         <div className="space-y-4">
           {cities.map((city) => {
