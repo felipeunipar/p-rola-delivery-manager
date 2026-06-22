@@ -402,18 +402,12 @@ function DeliverySettings() {
         </div>
 
         {/* Footer info */}
-        <div className="mt-8 grid gap-3 rounded-2xl border border-border bg-card p-5 md:grid-cols-2">
+        <div className="mt-8 rounded-2xl border border-border bg-card p-5">
           <InfoTile
             icon={<Bike className="h-5 w-5" />}
             tone="primary"
             title="Entrega"
             text="O cliente verá no checkout o prazo estimado antes de finalizar o pedido."
-          />
-          <InfoTile
-            icon={<ShoppingBag className="h-5 w-5" />}
-            tone="secondary"
-            title="Retirada"
-            text="No seu estabelecimento — pronto no tempo informado."
           />
         </div>
       </main>
