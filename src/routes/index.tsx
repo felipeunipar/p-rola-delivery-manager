@@ -3,7 +3,6 @@ import { useMemo, useState } from "react";
 import {
   MapPin,
   Clock,
-  ShoppingBag,
   Bike,
   CheckCircle2,
   ChevronDown,
@@ -11,6 +10,7 @@ import {
   Search,
   X,
   Building2,
+  ShoppingBag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -100,6 +100,7 @@ function DeliverySettings() {
     },
   ]);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({ perola: true });
+  const [pickupTime, setPickupTime] = useState({ min: 15, max: 20 });
   const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -197,6 +198,24 @@ function DeliverySettings() {
           </div>
         </div>
 
+        {/* Tempo de retirada geral */}
+        <div className="mb-6 flex items-center gap-4 rounded-2xl border border-border bg-card p-5">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
+            <ShoppingBag className="h-5 w-5" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-display text-lg font-bold">Tempo de retirada</h3>
+            <p className="text-sm text-muted-foreground">Definido uma vez — vale para todos os bairros e cidades.</p>
+          </div>
+          <RangeInput
+            icon={<Clock className="h-3.5 w-3.5" />}
+            tone="muted"
+            min={pickupTime.min}
+            max={pickupTime.max}
+            onChange={(min, max) => setPickupTime({ min, max })}
+          />
+        </div>
+
         {/* City sections */}
         <div className="space-y-4">
           {cities.map((city) => {
@@ -291,12 +310,11 @@ function DeliverySettings() {
                   <div className="overflow-hidden">
                     <div className="border-t border-border/70 bg-gradient-to-b from-accent/10 to-transparent">
                       {/* Header row */}
-                      <div className="hidden grid-cols-[80px_1.4fr_1fr_1.2fr_1.2fr] gap-4 px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground md:grid">
+                      <div className="hidden grid-cols-[80px_1.4fr_1fr_1.2fr] gap-4 px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground md:grid">
                         <div>Ativo</div>
                         <div>Bairro</div>
                         <div>Taxa (R$)</div>
                         <div>Entrega (min)</div>
-                        <div>Retirada (min)</div>
                       </div>
 
                       <ul className="divide-y divide-border/60">
@@ -304,7 +322,7 @@ function DeliverySettings() {
                           <li
                             key={nb.id}
                             className={cn(
-                              "grid grid-cols-1 gap-3 px-5 py-4 transition-colors md:grid-cols-[80px_1.4fr_1fr_1.2fr_1.2fr] md:items-center md:gap-4",
+                              "grid grid-cols-1 gap-3 px-5 py-4 transition-colors md:grid-cols-[80px_1.4fr_1fr_1.2fr] md:items-center md:gap-4",
                               !nb.active && "opacity-75",
                             )}
                           >
@@ -348,19 +366,6 @@ function DeliverySettings() {
                                 })
                               }
                             />
-
-                            <RangeInput
-                              icon={<ShoppingBag className="h-3.5 w-3.5" />}
-                              tone="muted"
-                              min={nb.pickupMin}
-                              max={nb.pickupMax}
-                              onChange={(min, max) =>
-                                updateNeighborhood(city.id, nb.id, {
-                                  pickupMin: min,
-                                  pickupMax: max,
-                                })
-                              }
-                            />
                           </li>
                         ))}
                       </ul>
@@ -397,18 +402,12 @@ function DeliverySettings() {
         </div>
 
         {/* Footer info */}
-        <div className="mt-8 grid gap-3 rounded-2xl border border-border bg-card p-5 md:grid-cols-2">
+        <div className="mt-8 rounded-2xl border border-border bg-card p-5">
           <InfoTile
             icon={<Bike className="h-5 w-5" />}
             tone="primary"
             title="Entrega"
             text="O cliente verá no checkout o prazo estimado antes de finalizar o pedido."
-          />
-          <InfoTile
-            icon={<ShoppingBag className="h-5 w-5" />}
-            tone="secondary"
-            title="Retirada"
-            text="No seu estabelecimento — pronto no tempo informado."
           />
         </div>
       </main>
