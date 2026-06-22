@@ -292,12 +292,11 @@ function DeliverySettings() {
                   <div className="overflow-hidden">
                     <div className="border-t border-border/70 bg-gradient-to-b from-accent/10 to-transparent">
                       {/* Header row */}
-                      <div className="hidden grid-cols-[80px_1.4fr_1fr_1.2fr_1.2fr] gap-4 px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground md:grid">
+                      <div className="hidden grid-cols-[80px_1.4fr_1fr_1.2fr] gap-4 px-5 py-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground md:grid">
                         <div>Ativo</div>
                         <div>Bairro</div>
                         <div>Taxa (R$)</div>
                         <div>Entrega (min)</div>
-                        <div>Retirada (min)</div>
                       </div>
 
                       <ul className="divide-y divide-border/60">
