@@ -192,28 +192,23 @@ function DeliverySettings() {
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success-soft px-4 py-2 text-sm font-medium text-success">
-            <CheckCircle2 className="h-4 w-4" />
-            Sincronizado com o site
-          </div>
-        </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-sm">
+              <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">Retirada</span>
+              <RangeInput
+                tone="muted"
+                min={pickupTime.min}
+                max={pickupTime.max}
+                onChange={(min, max) => setPickupTime({ min, max })}
+              />
+            </div>
 
-        {/* Tempo de retirada geral */}
-        <div className="mb-6 flex items-center gap-4 rounded-2xl border border-border bg-card p-5">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
-            <ShoppingBag className="h-5 w-5" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success-soft px-4 py-2 text-sm font-medium text-success">
+              <CheckCircle2 className="h-4 w-4" />
+              Sincronizado com o site
+            </div>
           </div>
-          <div className="flex-1">
-            <h3 className="font-display text-lg font-bold">Tempo de retirada</h3>
-            <p className="text-sm text-muted-foreground">Definido uma vez — vale para todos os bairros e cidades.</p>
-          </div>
-          <RangeInput
-            icon={<Clock className="h-3.5 w-3.5" />}
-            tone="muted"
-            min={pickupTime.min}
-            max={pickupTime.max}
-            onChange={(min, max) => setPickupTime({ min, max })}
-          />
         </div>
 
         {/* City sections */}
@@ -487,7 +482,7 @@ function RangeInput({
   min: number;
   max: number;
   onChange: (min: number, max: number) => void;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   tone: "primary" | "muted";
 }) {
   return (
@@ -499,7 +494,7 @@ function RangeInput({
           : "border-border bg-muted text-foreground/80",
       )}
     >
-      <span className="opacity-70">{icon}</span>
+      {icon && <span className="opacity-70">{icon}</span>}
       <input
         type="number"
         value={min}
