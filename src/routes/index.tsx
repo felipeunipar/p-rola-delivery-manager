@@ -304,7 +304,7 @@ function DeliverySettings() {
                           <li
                             key={nb.id}
                             className={cn(
-                              "grid grid-cols-1 gap-3 px-5 py-4 transition-colors md:grid-cols-[80px_1.4fr_1fr_1.2fr_1.2fr] md:items-center md:gap-4",
+                              "grid grid-cols-1 gap-3 px-5 py-4 transition-colors md:grid-cols-[80px_1.4fr_1fr_1.2fr] md:items-center md:gap-4",
                               !nb.active && "opacity-75",
                             )}
                           >
@@ -345,19 +345,6 @@ function DeliverySettings() {
                                 updateNeighborhood(city.id, nb.id, {
                                   deliveryMin: min,
                                   deliveryMax: max,
-                                })
-                              }
-                            />
-
-                            <RangeInput
-                              icon={<ShoppingBag className="h-3.5 w-3.5" />}
-                              tone="muted"
-                              min={nb.pickupMin}
-                              max={nb.pickupMax}
-                              onChange={(min, max) =>
-                                updateNeighborhood(city.id, nb.id, {
-                                  pickupMin: min,
-                                  pickupMax: max,
                                 })
                               }
                             />
