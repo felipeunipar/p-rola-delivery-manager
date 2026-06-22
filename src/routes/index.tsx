@@ -3,7 +3,6 @@ import { useMemo, useState } from "react";
 import {
   MapPin,
   Clock,
-  ShoppingBag,
   Bike,
   CheckCircle2,
   ChevronDown,
@@ -11,6 +10,7 @@ import {
   Search,
   X,
   Building2,
+  ShoppingBag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
